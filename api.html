@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Random Facts Trivia</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: white;
+  width: 650px;
+  max-width: 95%;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+}
+
+select, button {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+}
+
+button {
+  background: #667eea;
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: #5a67d8;
+}
+
+.answers button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  background: #edf2f7;
+  color: #333;
+}
+
+.answers button:hover {
+  box-shadow: 0 0 10px rgba(102,126,234,0.6);
+}
+
+.correct {
+  background: #38a169 !important;
+  color: white !important;
+}
+
+.incorrect {
+  background: #e53e3e !important;
+  color: white !important;
+}
+
+.hidden {
+  display: none;
+}
+
+#feedback {
+  font-weight: bold;
+  height: 24px;
+  margin-top: 10px;
+}
+
+.review-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 15px;
+  text-align: left;
+  animation: slideUp 0.4s ease;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #667eea;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+/* Animations */
+
+.fade-in {
+  animation: fadeIn 0.4s ease;
+}
+
+.pop {
+  animation: pop 0.3s ease;
+}
+
+.pulse {
+  animation: pulse 0.4s ease;
+}
+
+.favorite-saved {
+  animation: favoritePop 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes favoritePop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Random Facts Trivia</h1>
+
+  <!-- SETUP -->
+  <div id="setup">
+    <label>Questions:
+      <select id="amount">
+        <option value="5">5</option>
+        <option value="10">10</option>
+      </select>
+    </label>
+
+    <label>Difficulty:
+      <select id="difficulty">
+        <option value="">Any</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </label>
+
+    <br><br>
+    <button onclick="startGame()">Start Game</button>
+    <button onclick="viewFavorites()">⭐ View Favorites</button>
+  </div>
+
+  <!-- GAME -->
+  <div id="game" class="hidden">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <h3 id="question"></h3>
+    <div id="answers" class="answers"></div>
+    <div id="feedback"></div>
+    <div id="score"></div>
+  </div>
+
+  <!-- END -->
+  <div id="end" class="hidden"></div>
+
+</div>
+
+<script>
+let questions = [];
+let currentIndex = 0;
+let score = 0;
+let userAnswers = [];
+let acceptingAnswers = true;
+
+async function startGame() {
+  const amount = document.getElementById("amount").value;
+  const difficulty = document.getElementById("difficulty").value;
+
+  let url = `https://opentdb.com/api.php?amount=${amount}&type=multiple`;
+  if (difficulty) url += `&difficulty=${difficulty}`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  questions = data.results;
+  currentIndex = 0;
+  score = 0;
+  userAnswers = [];
+
+  document.getElementById("setup").classList.add("hidden");
+  document.getElementById("end").classList.add("hidden");
+  document.getElementById("game").classList.remove("hidden");
+
+  showQuestion();
+}
+
+function decodeHTML(html) {
+  const txt = document.createElement("textarea");
+  txt.innerHTML = html;
+  return txt.value;
+}
+
+function showQuestion() {
+  acceptingAnswers = true;
+
+  const q = questions[currentIndex];
+  const questionEl = document.getElementById("question");
+  const answersEl = document.getElementById("answers");
+
+  questionEl.textContent = decodeHTML(q.question);
+  questionEl.className = "fade-in";
+
+  answersEl.innerHTML = "";
+  document.getElementById("feedback").textContent = "";
+
+  let answers = [...q.incorrect_answers];
+  answers.push(q.correct_answer);
+  answers.sort(() => Math.random() - 0.5);
+
+  answers.forEach(answer => {
+    const btn = document.createElement("button");
+    btn.textContent = decodeHTML(answer);
+    btn.className = "pop";
+    btn.onclick = () => checkAnswer(btn, answer);
+    answersEl.appendChild(btn);
+  });
+
+  updateProgress();
+  document.getElementById("score").textContent = `Score: ${score}`;
+}
+
+function checkAnswer(button, answer) {
+  if (!acceptingAnswers) return;
+  acceptingAnswers = false;
+
+  const correct = questions[currentIndex].correct_answer;
+  userAnswers.push(answer);
+
+  const buttons = document.querySelectorAll(".answers button");
+
+  buttons.forEach(btn => {
+    if (btn.textContent === decodeHTML(correct)) {
+      btn.classList.add("correct");
+    }
+  });
+
+  if (answer === correct) {
+    score++;
+    document.getElementById("feedback").textContent = "Correct!";
+    document.getElementById("score").classList.add("pulse");
+    setTimeout(() => {
+      document.getElementById("score").classList.remove("pulse");
+    }, 400);
+  } else {
+    button.classList.add("incorrect");
+    document.getElementById("feedback").textContent = "Incorrect!";
+  }
+
+  document.getElementById("score").textContent = `Score: ${score}`;
+
+  setTimeout(() => {
+    currentIndex++;
+    if (currentIndex < questions.length) {
+      showQuestion();
+    } else {
+      endGame();
+    }
+  }, 1000);
+}
+
+function updateProgress() {
+  const percent = ((currentIndex) / questions.length) * 100;
+  document.getElementById("progressFill").style.width = percent + "%";
+}
+
+function endGame() {
+  document.getElementById("game").classList.add("hidden");
+  const endDiv = document.getElementById("end");
+  endDiv.classList.remove("hidden");
+
+  endDiv.innerHTML = `
+    <h2>Game Over!</h2>
+    <p>You scored ${score} out of ${questions.length}</p>
+    <button onclick="viewFavorites()">⭐ View Favorites</button>
+    <h3>Review Your Questions</h3>
+    <div id="review"></div>
+    <button onclick="location.reload()">Play Again</button>
+  `;
+
+  const reviewDiv = document.getElementById("review");
+
+  questions.forEach((q, index) => {
+    const userAnswer = userAnswers[index];
+    const correct = q.correct_answer;
+    const isCorrect = userAnswer === correct;
+
+    const card = document.createElement("div");
+    card.className = "review-card";
+
+    card.innerHTML = `
+      <p><strong>Q${index + 1}:</strong> ${decodeHTML(q.question)}</p>
+      <p>Your Answer:
+        <span style="color:${isCorrect ? "green" : "red"}">
+          ${decodeHTML(userAnswer)}
+        </span>
+      </p>
+      <p>Correct Answer:
+        <span style="color:green">
+          ${decodeHTML(correct)}
+        </span>
+      </p>
+      <button onclick="favoriteQuestion(${index}, this)">⭐ Favorite</button>
+    `;
+
+    reviewDiv.appendChild(card);
+  });
+}
+
+function favoriteQuestion(index, button) {
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  const q = questions[index];
+
+  const exists = favorites.some(f => f.question === q.question);
+
+  if (!exists) {
+    favorites.push(q);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    button.textContent = "⭐ Saved!";
+    button.classList.add("favorite-saved");
+  } else {
+    button.textContent = "⭐ Already Saved";
+  }
+}
+
+function viewFavorites() {
+  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  const endDiv = document.getElementById("end");
+
+  document.getElementById("setup").classList.add("hidden");
+  document.getElementById("game").classList.add("hidden");
+  endDiv.classList.remove("hidden");
+
+  if (favorites.length === 0) {
+    endDiv.innerHTML = `
+      <h2>No Favorites Yet</h2>
+      <button onclick="location.reload()">Back</button>
+    `;
+    return;
+  }
+
+  endDiv.innerHTML = `
+    <h2>Your Favorite Questions</h2>
+    <div id="favoritesList"></div>
+    <button onclick="location.reload()">Back</button>
+  `;
+
+  const list = document.getElementById("favoritesList");
+
+  favorites.forEach((q, index) => {
+    const card = document.createElement("div");
+    card.className = "review-card";
+
+    card.innerHTML = `
+      <p>${decodeHTML(q.question)}</p>
+      <p><strong>Answer:</strong> ${decodeHTML(q.correct_answer)}</p>
+      <button onclick="removeFavorite(${index})">❌ Remove</button>
+    `;
+
+    list.appendChild(card);
+  });
+}
+
+function removeFavorite(index) {
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  favorites.splice(index, 1);
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  viewFavorites();
+}
+</script>
+
+</body>
+</html>
