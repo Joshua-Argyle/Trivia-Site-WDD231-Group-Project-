@@ -2,29 +2,50 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Random Facts Trivia</title>
+<title>Brain Gains Trivia</title>
 
 <style>
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  display: flex;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #B6C649;
+  display: block;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   margin: 0;
+  width: auto;
+  min-height: 100%;
 }
 
 .container {
   background: white;
   width: 650px;
+  margin: auto;
+  margin-top: 200px;
+  margin-bottom: 200px;
   max-width: 95%;
-  padding: 25px;
+  padding: 50px;
   border-radius: 15px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.2);
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 1000;
+    color:#D16666;
+    background-color: #2C4251;
+    padding: 5px;
+    padding-right: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin: 0;
+}
+
+.logo {
+    width: 120px;
 }
 
 h1, h2, h3 {
@@ -40,7 +61,7 @@ select, button {
 }
 
 button {
-  background: #667eea;
+  background: #D16666;
   color: white;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -57,6 +78,40 @@ button:hover {
   margin: 8px 0;
   background: #edf2f7;
   color: #333;
+}
+
+header {
+    display: flex;
+    margin: 0;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    text-align: right;
+    justify-content: flex-end; 
+    padding-right: 30px;
+}
+
+ul {
+    display: flex;
+
+}
+
+p {
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+li {
+    list-style: none;
+    padding: 15px;
+    
 }
 
 .answers button:hover {
@@ -125,6 +180,32 @@ button:hover {
   animation: favoritePop 0.4s ease;
 }
 
+footer {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    background-color: #2C4251;
+    width: auto;
+    padding-top: 30px;  
+ }
+ .footerP {
+    margin: auto;
+    padding: 5px;
+    padding-bottom: 40px;
+    color: white;
+    font-size: 12px;
+
+ }
+ .footerA {
+    color: white;
+ }
+ a:hover {
+    color: #B6C649;
+ }
+ .footerNav {
+    margin: auto;
+    padding-right: 42px;
+ }
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -151,13 +232,60 @@ button:hover {
   from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+ @media (max-width: 657px) {
+  .info {
+    display: flex;
+    flex-direction: column;
+  }
+  .userStats {
+    margin-top: 50px;
+  }
+  .description {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  header {
+    flex-direction: column;
+  }
+  
+  .hero {
+    width: 100%;
+  }
+  footer {
+    padding-right: 0;
+  }
+  nav {
+    padding-right: 0;
+  }
+  ul {
+    flex-direction: column;
+  }
+  li {
+    padding: 5px; 
+  }
+
+}
 </style>
 </head>
 
 <body>
+<header>
+        <h1>Brain Gains</h1>
+        <img class="logo" src="imgs/d86d2802-9b8b-4772-9ab8-85437eb2c0a5.png" alt="Brain Gain Logo">
+        <nav>
+        <ul>
+            <li><a href="api.html">Play</a></li>
+            <li><a href="vault.html">Vault</a></li>
+            <li><a href="">Preferences</a></li>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+        </nav>
+    </header>
 
 <div class="container">
-  <h1>Random Facts Trivia</h1>
+  <h1>Brain Gains Trivia</h1>
 
   <!-- SETUP -->
   <div id="setup">
@@ -411,6 +539,16 @@ function removeFavorite(index) {
   viewFavorites();
 }
 </script>
+
+<footer>
+        <ul class="footerNav">
+            <li><a class="footerA" href="api.html">Play</a></li>
+            <li><a class="footerA" href="vault.html">Vault</a></li>
+            <li><a class="footerA" href="">Preferences</a></li>
+            <li><a class="footerA" href="index.html">Home</a></li>
+        </ul>
+        <p class="footerP">© 2026 Brain Gain Trivia. All rights reserved.</p>
+</footer>
 
 </body>
 </html>

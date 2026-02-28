@@ -6,7 +6,6 @@
 
 body {
     display: block;
-    
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     width: auto;
@@ -41,6 +40,11 @@ main {
 }
 .logo {
     width: 120px;
+} 
+
+button:hover {
+  transform: scale(1.05);
+  background: #5a67d8;
 }
 header {
     display: flex;
@@ -48,6 +52,9 @@ header {
     align-items: center;
     justify-content: space-between;
     background-color: white;
+    border-bottom-style: dashed;
+    border-width: 1px;
+    border-color: #B6C649;
 }
 
 ul {
@@ -78,6 +85,27 @@ nav {
     width: auto;
     height: 50vh;
     object-fit: cover;
+    display:block;
+    background-image: url('imgs/Background\ Hero.png');
+    background-position: center;  
+    
+}
+
+
+.sample.fade-out {
+  opacity: 0;
+}
+.sample {
+    text-align: center;
+    align-items: center;
+    font-size: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 1000;
+    background-color: transparent;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    opacity: 1;
+    transition: opacity 0.5s ease;
 }
 
 .info {
