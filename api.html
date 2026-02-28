@@ -179,7 +179,7 @@ button:hover {
 
     <br><br>
     <button onclick="startGame()">Start Game</button>
-    <button onclick="viewFavorites()">⭐ View Favorites</button>
+    <button onclick="viewFavorites()">View Favorites</button>
   </div>
 
   <!-- GAME -->
@@ -315,7 +315,7 @@ function endGame() {
   endDiv.innerHTML = `
     <h2>Game Over!</h2>
     <p>You scored ${score} out of ${questions.length}</p>
-    <button onclick="viewFavorites()">⭐ View Favorites</button>
+    <button onclick="viewFavorites()">View Favorites</button>
     <h3>Review Your Questions</h3>
     <div id="review"></div>
     <button onclick="location.reload()">Play Again</button>
@@ -343,7 +343,7 @@ function endGame() {
           ${decodeHTML(correct)}
         </span>
       </p>
-      <button onclick="favoriteQuestion(${index}, this)">⭐ Favorite</button>
+      <button onclick="favoriteQuestion(${index}, this)">Favorite</button>
     `;
 
     reviewDiv.appendChild(card);
@@ -359,10 +359,10 @@ function favoriteQuestion(index, button) {
   if (!exists) {
     favorites.push(q);
     localStorage.setItem("favorites", JSON.stringify(favorites));
-    button.textContent = "⭐ Saved!";
+    button.textContent = "Saved!";
     button.classList.add("favorite-saved");
   } else {
-    button.textContent = "⭐ Already Saved";
+    button.textContent = "Already Saved";
   }
 }
 
@@ -397,7 +397,7 @@ function viewFavorites() {
     card.innerHTML = `
       <p>${decodeHTML(q.question)}</p>
       <p><strong>Answer:</strong> ${decodeHTML(q.correct_answer)}</p>
-      <button onclick="removeFavorite(${index})">❌ Remove</button>
+      <button onclick="removeFavorite(${index})">Remove</button>
     `;
 
     list.appendChild(card);
