@@ -278,7 +278,7 @@ footer {
         <ul>
             <li><a href="api.html">Play</a></li>
             <li><a href="vault.html">Vault</a></li>
-            <li><a href="">Preferences</a></li>
+            <li><a href="preferences.html">Preferences</a></li>
             <li><a href="index.html">Home</a></li>
         </ul>
         </nav>
@@ -486,6 +486,7 @@ function favoriteQuestion(index, button) {
 
   if (!exists) {
     favorites.push(q);
+    document.getElementById("favoritesVault").innerHTML = `<p>${favorites}</p>`
     localStorage.setItem("favorites", JSON.stringify(favorites));
     button.textContent = "Saved!";
     button.classList.add("favorite-saved");
@@ -544,7 +545,7 @@ function removeFavorite(index) {
         <ul class="footerNav">
             <li><a class="footerA" href="api.html">Play</a></li>
             <li><a class="footerA" href="vault.html">Vault</a></li>
-            <li><a class="footerA" href="">Preferences</a></li>
+            <li><a class="footerA" href="preferences.html">Preferences</a></li>
             <li><a class="footerA" href="index.html">Home</a></li>
         </ul>
         <p class="footerP">© 2026 Brain Gain Trivia. All rights reserved.</p>
