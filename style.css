@@ -17,12 +17,18 @@ body {
     padding-top: 20px;
     padding-bottom: 20px;
 }
-.favorite {
+.favoriteQuestion {
     background-color: gold;
     margin-left: 30%;
     margin-right: 30%;
     border-radius: 5px;
     box-shadow: 0px 4px 10px rgba(1, 1, 0, 0.4);
+}
+.correct {
+    color: darkgreen;
+}
+.missedAnswer {
+    color: gold;
 }
 .missed {
     background-color: #D16666;

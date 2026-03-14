@@ -329,6 +329,7 @@ footer {
 
 <script>
 let questions = [];
+let incorrectQuestions = [];
 let currentIndex = 0;
 let score = 0;
 let userAnswers = [];
@@ -416,6 +417,7 @@ function checkAnswer(button, answer) {
   } else {
     button.classList.add("incorrect");
     document.getElementById("feedback").textContent = "Incorrect!";
+    
   }
 
   document.getElementById("score").textContent = `Score: ${score}`;
@@ -456,6 +458,10 @@ function endGame() {
     const correct = q.correct_answer;
     const isCorrect = userAnswer === correct;
 
+    if (!isCorrect) {
+        q.incorrect = true;
+    }
+
     const card = document.createElement("div");
     card.className = "review-card";
 
@@ -475,7 +481,8 @@ function endGame() {
     `;
 
     reviewDiv.appendChild(card);
-  });
+  })
+  placeMissedinLocalStorage()
 }
 
 function favoriteQuestion(index, button) {
@@ -486,13 +493,24 @@ function favoriteQuestion(index, button) {
 
   if (!exists) {
     favorites.push(q);
-    document.getElementById("favoritesVault").innerHTML = `<p>${favorites}</p>`
     localStorage.setItem("favorites", JSON.stringify(favorites));
     button.textContent = "Saved!";
     button.classList.add("favorite-saved");
   } else {
     button.textContent = "Already Saved";
   }
+}
+function placeMissedinLocalStorage() {
+  const missedQuestions = [];
+
+  questions.forEach(question => {
+    if (question.incorrect && !missedQuestions.includes(question)) {
+        missedQuestions.push(question);
+    
+    }
+  });
+
+  localStorage.setItem("missed", JSON.stringify(missedQuestions));
 }
 
 function viewFavorites() {
@@ -530,7 +548,8 @@ function viewFavorites() {
     `;
 
     list.appendChild(card);
-  });
+  })
+  ;
 }
 
 function removeFavorite(index) {
@@ -539,6 +558,8 @@ function removeFavorite(index) {
   localStorage.setItem("favorites", JSON.stringify(favorites));
   viewFavorites();
 }
+
+
 </script>
 
 <footer>
