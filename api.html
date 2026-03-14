@@ -308,6 +308,8 @@ footer {
     <br><br>
     <button onclick="startGame()">Start Game</button>
     <button onclick="viewFavorites()">View Favorites</button>
+    <button onclick="playFavoritesTrivia()">Play Favorites Trivia</button>
+    <button onclick="playMissedTrivia()">Play Missed Trivia</button>
   </div>
 
   <!-- GAME -->
@@ -354,6 +356,38 @@ async function startGame() {
   document.getElementById("end").classList.add("hidden");
   document.getElementById("game").classList.remove("hidden");
 
+  showQuestion();
+}
+
+function playFavoritesTrivia() {
+  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  if (favorites.length === 0) {
+    alert("No favorite questions to play!");
+    return;
+  }
+  questions = favorites.map(q => ({ ...q }));
+  currentIndex = 0;
+  score = 0;
+  userAnswers = [];
+  document.getElementById("setup").classList.add("hidden");
+  document.getElementById("end").classList.add("hidden");
+  document.getElementById("game").classList.remove("hidden");
+  showQuestion();
+}
+
+function playMissedTrivia() {
+  const missed = JSON.parse(localStorage.getItem("missed")) || [];
+  if (missed.length === 0) {
+    alert("No missed questions to play!");
+    return;
+  }
+  questions = missed.map(q => ({ ...q }));
+  currentIndex = 0;
+  score = 0;
+  userAnswers = [];
+  document.getElementById("setup").classList.add("hidden");
+  document.getElementById("end").classList.add("hidden");
+  document.getElementById("game").classList.remove("hidden");
   showQuestion();
 }
 
