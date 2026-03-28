@@ -1,0 +1,111 @@
+.pref-body {
+
+}
+
+.pref-main {
+    
+    width: 100%;         
+    
+}
+
+.set-pref {
+    display: flex;
+    flex-direction: column;
+}
+
+#difficulty {
+    padding-top: 0px;
+    border-radius: 5px;
+    height: 30px;
+    background-color: #D16666;
+    color: white;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+.checkboxes {
+    display: flex;
+    gap: 25px;
+}
+.form {
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    display: block;
+    justify-content: center;
+}
+
+input[name="category"] {
+    
+}
+.pref-label {
+    font-size: 20px;
+    padding-left: 10px;
+    
+}
+.pref-cat {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-bottom-style: solid;
+    border-color: #2C4251;
+}
+#pref-submit {
+    background-color: #D16666;
+    color: white;
+    font-size: 25px;
+    height: 40px;
+    width: 33%;
+    margin-bottom: 30px;
+    margin-top: 50px;
+    margin-left: 33%;
+}
+
+.pref-button {
+    display: flex;
+    background: none;
+    border: none;
+    border-style: none;
+    margin: 50px;
+    font-size: 20px;
+    font-size: bold;
+    background-color: #B6C649;
+    border-radius: 0px;
+    width: 500px;
+
+    
+}
+.h1-pref {
+    background: none;
+    border: none;
+    border-radius: 0px;
+}
+.h1-pref :hover {
+    background: none;
+    background-color: #B6C649;
+    border: none;
+}
+.pref-button :hover {
+  transform: scale(1.00);
+  background: #B6C649;
+
+}
+
+.arrow {
+    width: 50px;
+    flex: flex-end;
+    display: inline-block;
+    transition: transform 0.3s ease;
+    transform: rotate(270deg);
+    border: none;
+    border-radius: 10px;
+}
+
+.arrow-is-rotated {
+    transform: rotate(360deg);
+}
+.pref-description {
+    margin: auto;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+

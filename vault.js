@@ -11,7 +11,6 @@ function displayFavoritesVault() {
   }
 }
 
-
 function displayMissedVault() {
   const missed = JSON.parse(localStorage.getItem("missed")) || [];
   const vault = document.querySelector(".missedVault");

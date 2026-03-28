@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brain Gain Trivia</title>
     <link rel="stylesheet" href="style.css">
+    <script src="preferences.js" defer></script>
+
 </head>
-<body>
+<body class="pref-body">
     <header>
         <h1>Brain Gains</h1>
         <img class="logo" src="imgs/d86d2802-9b8b-4772-9ab8-85437eb2c0a5.png" alt="Brain Gain Logo">
@@ -20,11 +22,158 @@
         </nav>
     </header>
 
-    <main>
+    <main class="pref-main">
+        <Button class="pref-button">
+            <h1 class="h1-pref">Preference Settings</h1>
+        <img class="arrow" src="imgs/Arrow.png" alt="Dropdown Arrow"></Button>
+        <p class="pref-description" >Customize your game experience below to be tested exactly on what categories you want to become more knowledgeable at!</p>
+        <section class="set-pref hidden">
+         <form class="form" action="/submit-form" method="POST">
 
+            <h2 for="difficulty">Difficulty:</h2><br>
+            <select id="difficulty" name="difficulty">
+             <option value="select">select</option>
+             <option value="easy">easy</option>
+             <option value="medium">medium</option>
+             <option value="hard">hard</option>
+            </select><br><br>
+
+        
+            <h2 id="cat">Categories:</h2>
+            
+
+        <div class="checkboxes">
+            <section id="part1">
+            <div class="pref-cat">
+            <input type="checkbox" id="general_knowledge" name="category" value="9">
+            <label class="pref-label" for="general_knowledge"> General Knowledge</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="books" name="category" value="10">
+            <label class="pref-label" for="books"> Books</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="film" name="category" value="11">
+            <label  class="pref-label" for="film"> Film</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="music" name="category" value="12">
+            <label  class="pref-label" for="music"> Music</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="musicals_theatre" name="category" value="13">
+            <label  class="pref-label" for="musicals_theatre"> Musicals & Theatre</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="television" name="category" value="14">
+            <label class="pref-label" for="television"> Television</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="video_games" name="category" value="15">
+            <label class="pref-label" for="video_games"> Video Games</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="board_games" name="category" value="16">
+            <label class="pref-label" for="board_games"> Board Games</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="science_nature" name="category" value="17">
+            <label class="pref-label" for="science_nature"> Science & Nature</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="computers" name="category" value="18">
+            <label class="pref-label" for="computers"> Computers</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="mathematics" name="category" value="19">
+            <label class="pref-label" for="mathematics"> Mathematics</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="mythology" name="category" value="20">
+            <label class="pref-label" for="mythology"> Mythology</label><br>
+            </div>
+            
+            </section>
+
+            <section id="part2">
+            <div class="pref-cat">
+            <input type="checkbox" id="sports" name="category" value="21">
+            <label class="pref-label" for="sports"> Sports</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="geography" name="category" value="22">
+            <label class="pref-label" for="geography"> Geography</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="history" name="category" value="23">
+            <label class="pref-label" for="history"> History</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="politics" name="category" value="24">
+            <label class="pref-label" for="politics"> Politics</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="art" name="category" value="25">
+            <label class="pref-label" for="art"> Art</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="celebrities" name="category" value="26">
+            <label class="pref-label" for="celebrities"> Celebrities</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="animals" name="category" value="27">
+            <label class="pref-label" for="animals"> Animals</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="vehicles" name="category" value="28">
+            <label class="pref-label" for="vehicles"> Vehicles</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="comics" name="category" value="29">
+            <label class="pref-label" for="comics"> Comics</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="gadgets" name="category" value="30">
+            <label class="pref-label" for="gadgets"> Gadgets</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="anime_manga" name="category" value="31">
+            <label class="pref-label" for="anime_manga"> Japanese Anime & Manga</label><br>
+            </div>
+
+            <div class="pref-cat">
+            <input type="checkbox" id="cartoon_animations" name="category" value="32">
+            <label class="pref-label" for="cartoon_animations"> Cartoon & Animations</label><br>
+            </div>
+            </section>
+            </div>
+            
+  <input id="pref-submit" type="submit" value="Submit">
+</form>   
+</section>
     </main>
     
-
      <footer>
         <ul class="footerNav">
             <li><a class="footerA" href="api.html">Play</a></li>
