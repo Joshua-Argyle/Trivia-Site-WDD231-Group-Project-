@@ -29,16 +29,6 @@
         <p class="pref-description" >Customize your game experience below to be tested exactly on what categories you want to become more knowledgeable at!</p>
         <section class="set-pref hidden">
          <form class="form" action="/submit-form" method="POST">
-
-            <h2 for="difficulty">Difficulty:</h2><br>
-            <select id="difficulty" name="difficulty">
-             <option value="select">select</option>
-             <option value="easy">easy</option>
-             <option value="medium">medium</option>
-             <option value="hard">hard</option>
-            </select><br><br>
-
-        
             <h2 id="cat">Categories:</h2>
             
 
@@ -171,6 +161,13 @@
             
   <input id="pref-submit" type="submit" value="Submit">
 </form>   
+</section>
+<section class="display-categories">
+<h2>Categories Toggled On:</h2>
+<ul id="categories-toggled">
+    Everything is currently toggled on.
+</ul>
+
 </section>
     </main>
     

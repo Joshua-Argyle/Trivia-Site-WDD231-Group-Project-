@@ -338,10 +338,30 @@ let userAnswers = [];
 let acceptingAnswers = true;
 
 async function startGame() {
+
   const amount = document.getElementById("amount").value;
   const difficulty = document.getElementById("difficulty").value;
 
-  let url = `https://opentdb.com/api.php?amount=${amount}&type=multiple`;
+  const savedData = localStorage.getItem('userData');
+  let url = "";
+
+  const userPrefs = savedData ? JSON.parse(savedData) : null;
+
+  
+  if (userPrefs && userPrefs.category && userPrefs.category.length > 0) {
+    
+    const userPrefs = JSON.parse(savedData);
+
+    
+    const selectedCategories = userPrefs.category; 
+
+    const randomIndex = Math.floor(Math.random() * selectedCategories.length);
+    const randomCategory = selectedCategories[randomIndex];
+  url = `https://opentdb.com/api.php?amount=${amount}&category=${randomCategory}&difficulty=${difficulty}&type=multiple`;
+  } else {
+    url = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`;
+  }
+  
   if (difficulty) url += `&difficulty=${difficulty}`;
 
   const response = await fetch(url);
