@@ -1,8 +1,13 @@
-import {dropDown} from './dropDownMenu.js';
-
-const pref = document.querySelector('.set-pref');
-const button = document.querySelector('.pref-button');
-const arrow = document.querySelector('.arrow');
+document.addEventListener('DOMContentLoaded', function() {
+  const clearBtn = document.getElementById('clear-preferences');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function() {
+      document.querySelectorAll('input[type="checkbox"][name="category"]').forEach(cb => {
+        cb.checked = false;
+      });
+    });
+  }
+});
 const form = document.querySelector('.form');
 const categoryContainer = document.querySelector('#categories-toggled');
 const categoryLookup = {
@@ -33,10 +38,7 @@ const categoryLookup = {
 };
 
 
-button.addEventListener('click', () => {
-  pref.classList.toggle("hidden");
-  arrow.classList.toggle('arrow-is-rotated');
-});
+
 
 
 
@@ -96,5 +98,19 @@ function updateUI() {
       categoryContainer.appendChild(li);
   }
 };
-dropDown();
+function checkCategoriesFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const urlCategories = params.getAll('category');
+  if (urlCategories.length > 0) {
+    urlCategories.forEach(cat => {
+      const checkbox = document.querySelector('input[type="checkbox"][name="category"][value="' + cat + '"]');
+      if (checkbox) {
+        checkbox.checked = true;
+      }
+    });
+  }
+}
+
+checkCategoriesFromURL();
+updateUI();
 updateUI();
