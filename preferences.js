@@ -37,18 +37,28 @@ button.addEventListener('click', () => {
 });
 
 
+
 form.addEventListener('submit', function(event) {
-  localStorage.removeItem('userData');
-  event.preventDefault()
+  event.preventDefault();
   const formData = new FormData(event.target);
-  const data = Object.fromEntries(formData.entries());
+  const categories = formData.getAll('category');
+  const errorDiv = document.getElementById('form-error');
+  if (categories.length === 0) {
+    errorDiv.style.display = 'block';
+    return;
+  } else {
+    errorDiv.style.display = 'none';
+  }
+  const params = new URLSearchParams();
+  categories.forEach(cat => params.append('category', cat));
+  for (const [key, value] of formData.entries()) {
+    if (key !== 'category') {
+      params.append(key, value);
+    }
+  }
+  window.location.href = 'api.html?' + params.toString();
+});
 
-  data.category = formData.getAll('category');
-
-  localStorage.setItem('userData', JSON.stringify(data));
-
-  updateUI();
-})
 
 function updateUI() {
 
