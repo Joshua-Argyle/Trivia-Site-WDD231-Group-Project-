@@ -1,3 +1,5 @@
+import {dropDown} from './dropDownMenu.js';
+
 const pref = document.querySelector('.set-pref');
 const button = document.querySelector('.pref-button');
 const arrow = document.querySelector('.arrow');
@@ -84,4 +86,5 @@ function updateUI() {
       categoryContainer.appendChild(li);
   }
 };
+dropDown();
 updateUI();

@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Brain Gains Trivia</title>
-
 <style>
+
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #B6C649;
@@ -206,6 +207,21 @@ footer {
     margin: auto;
     padding-right: 42px;
  }
+
+ .regular-nav {
+    Display: flex;
+}
+.dropdown {
+    display: none;
+}
+#dropbtn {
+    padding: 5px;
+    margin: 20px;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    color: black;
+}
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -247,9 +263,35 @@ footer {
   }
 
   header {
-    flex-direction: column;
+    
+  }
+   
+  .regular-nav {
+    Display: none;
+  }
+  .dropdown {
+    display: block;
   }
   
+  #myDropdown {
+    height: 100%;
+    width: 0; 
+    position: fixed;
+    z-index: 1000; 
+    top: 0;
+    right: 0;
+    background-color: #fff; 
+    overflow-x: hidden; 
+    transition: 0.5s; 
+    padding-top: 60px;
+    margin-right: 0px;
+    text-align: center;
+  }
+  
+  #close-menu {
+    font-size: 50px;
+    
+  }
   .hero {
     width: 100%;
   }
@@ -260,22 +302,36 @@ footer {
     padding-right: 0;
   }
   ul {
-    flex-direction: column;
+    flex-direction: flex;
   }
   li {
     padding: 5px; 
   }
-
-}
+ }
 </style>
 </head>
 
 <body>
+  <main>
 <header>
         <h1>Brain Gains</h1>
         <img class="logo" src="imgs/d86d2802-9b8b-4772-9ab8-85437eb2c0a5.png" alt="Brain Gain Logo">
         <nav>
-        <ul>
+
+        <div class="dropdown">
+            
+            <button id="dropbtn" class="dropbtn">&#9776;</button>
+            
+            <div id="myDropdown" class="dropdown">
+            <li><a class="close" href="javascript:void(0)" class="closebtn" id="close-menu">&times;</a></li>
+            <li><a href="api.html">Play</a></li>
+            <li><a href="vault.html">Vault</a></li>
+            <li><a href="preferences.html">Preferences</a></li>
+            <li><a href="index.html">Home</a></li>
+            </div>
+        </div>
+
+        <ul class="regular-nav">
             <li><a href="api.html">Play</a></li>
             <li><a href="vault.html">Vault</a></li>
             <li><a href="preferences.html">Preferences</a></li>
@@ -328,8 +384,10 @@ footer {
   <div id="end" class="hidden"></div>
 
 </div>
+</main>
 
 <script>
+
 let questions = [];
 let incorrectQuestions = [];
 let currentIndex = 0;
@@ -613,6 +671,7 @@ function removeFavorite(index) {
   viewFavorites();
 }
 
+dropDown();
 
 </script>
 

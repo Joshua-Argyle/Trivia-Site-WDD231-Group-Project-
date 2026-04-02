@@ -97,7 +97,6 @@ nav {
     
 }
 
-
 .sample.fade-out {
   opacity: 0;
 }
@@ -147,6 +146,7 @@ nav {
     color: white;
     border-color: white;
     box-shadow: 0px 4px 10px rgba(1, 1, 0, 0.4);
+    margin-left: 75px;
 }
 .description {
     padding: 20px;
@@ -205,6 +205,19 @@ footer {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+.regular-nav {
+    Display: flex;
+}
+.dropdown {
+    display: none;
+}
+#dropbtn {
+    padding: 5px;
+    margin: 20px;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+}
 
  @media (max-width: 657px) {
   .info {
@@ -218,9 +231,32 @@ footer {
     margin-left: 10px;
     margin-right: 10px;
   }
-
-  header {
-    flex-direction: column;
+  .play {
+    margin-bottom: 20px;
+  }
+  .regular-nav {
+    Display: none;
+  }
+  .dropdown {
+    display: block;
+  }
+  #myDropdown {
+    height: 100%;
+    width: 0; 
+    position: fixed;
+    z-index: 1000; 
+    top: 0;
+    right: 0;
+    background-color: #fff; 
+    overflow-x: hidden; 
+    transition: 0.5s; 
+    padding-top: 60px;
+    margin-right: 0px;
+    text-align: center;
+  }
+  
+  .close {
+    font-size: 50px;
   }
   
   .hero {
@@ -232,9 +268,7 @@ footer {
   nav {
     padding-right: 0;
   }
-  ul {
-    flex-direction: column;
-  }
+  
   li {
     padding: 5px; 
   }

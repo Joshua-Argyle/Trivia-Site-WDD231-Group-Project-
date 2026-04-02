@@ -5,14 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vault</title>
     <link rel="stylesheet" href="style.css">
-    <script src="vault.js" defer></script>
+    <script type="module" src="vault.js" defer></script>
 </head>
 <body>
     <header>
         <h1>Brain Gains</h1>
         <img class="logo" src="imgs/d86d2802-9b8b-4772-9ab8-85437eb2c0a5.png" alt="Brain Gain Logo">
         <nav>
-        <ul>
+
+        <div class="dropdown">
+            
+            <button id="dropbtn" class="dropbtn">&#9776;</button>
+            
+            <div id="myDropdown" class="dropdown">
+            <li><a class="close" href="javascript:void(0)" class="closebtn" id="close-menu">&times;</a></li>
+            <li><a href="api.html">Play</a></li>
+            <li><a href="vault.html">Vault</a></li>
+            <li><a href="preferences.html">Preferences</a></li>
+            <li><a href="index.html">Home</a></li>
+            </div>
+        </div>
+
+        <ul class="regular-nav">
             <li><a href="api.html">Play</a></li>
             <li><a href="vault.html">Vault</a></li>
             <li><a href="preferences.html">Preferences</a></li>

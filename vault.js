@@ -1,4 +1,4 @@
-
+import {dropDown} from './dropDownMenu.js';
 
 function displayFavoritesVault() {
   const list = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -21,6 +21,6 @@ function displayMissedVault() {
     vault.innerHTML = missed.map(q => `<p class="missed">${q.question} - <span class="missedAnswer">${q.correct_answer}</span</p>`).join("");
   }
 }
-
+dropDown();
 displayFavoritesVault();
 displayMissedVault();
