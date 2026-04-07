@@ -89,10 +89,10 @@ nav {
 }
 .hero {
     width: auto;
-    height: 50vh;
+    height: 35vh;
     object-fit: cover;
     display:block;
-    background-image: url('imgs/Background\ Hero.png');
+    background-image: url('../imgs/Background Hero.png');
     background-position: center;  
     
 }
@@ -107,8 +107,8 @@ nav {
     font-family: 'Montserrat', sans-serif;
     font-weight: 1000;
     background-color: transparent;
-    padding-top: 100px;
-    padding-bottom: 50px;
+    padding-top: 50px;
+    padding-bottom: 0px;
     opacity: 1;
     transition: opacity 0.5s ease;
 }
@@ -116,41 +116,52 @@ nav {
 .info {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    
+}
+.ready {
+    color: white;
 }
 .gameInfo {
      grid-column: 1 / 2;
      margin: auto;
      display: flex;
      flex-direction: column;
+     background-color: #2C4251;
+     padding: 20px;
+     border-radius: 20px;
 }
 .categories {
     width: 90%;
     object-fit: cover;
-    max-height: 350px;
+    max-height: 360px;
     grid-column: 2 / 3;
     margin: auto;
     border: #B6C649;
     border-radius: 5px;
     padding-right: 30px;
     box-shadow: 0px 4px 10px rgba(1, 1, 0, 0.4);
+    margin-top: 12px;
 }
 .play {
-    padding: 25px;
+    padding: 15px;
     margin: auto;
     background-color: #D16666;
     border-radius: 5px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
+    font-size: 30px;
     color: white;
     border-color: white;
     box-shadow: 0px 4px 10px rgba(1, 1, 0, 0.4);
-    margin-left: 75px;
+    margin-left: 50px;
 }
 .description {
     padding: 20px;
     padding-left: 35px;
+    background-color: lightgrey;
+    margin-bottom: 0;
 }
 h1 {
     font-family: 'Montserrat', sans-serif;
@@ -272,5 +283,9 @@ footer {
   li {
     padding: 5px; 
   }
+
+  .categories {
+    width: 100%;
+}
 
 }

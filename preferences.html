@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brain Gain Trivia</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script type="module" src="preferences.js" defer></script>
 
 </head>
@@ -20,7 +20,7 @@
             
             <div id="myDropdown" class="dropdown">
             <li><a class="close" href="javascript:void(0)" class="closebtn" id="close-menu">&times;</a></li>
-            <li><a href="api.html">Play</a></li>
+            <li class="playLink"><a href="api.html">Play</a></li>
             <li><a href="vault.html">Vault</a></li>
             <li><a href="preferences.html">Preferences</a></li>
             <li><a href="index.html">Home</a></li>
@@ -28,7 +28,7 @@
         </div>
 
         <ul class="regular-nav">
-            <li><a href="api.html">Play</a></li>
+            <li class="playLink"><a href="api.html">Play</a></li>
             <li><a href="vault.html">Vault</a></li>
             <li><a href="preferences.html">Preferences</a></li>
             <li><a href="index.html">Home</a></li>
@@ -37,11 +37,9 @@
     </header>
 
     <main class="pref-main">
-        <Button class="pref-button">
-            <h1 class="h1-pref">Preference Settings</h1>
-        <img class="arrow" src="imgs/Arrow.png" alt="Dropdown Arrow"></Button>
+        <h1 class="h1-pref">Preference Settings</h1>
         <p class="pref-description" >Customize your game experience below to be tested exactly on what categories you want to become more knowledgeable at!</p>
-        <section class="set-pref hidden">
+        <section class="set-pref">
          <form class="form" action="/submit-form" method="POST">
             <h2 id="cat">Categories:</h2>
             
@@ -178,8 +176,9 @@
 <div id="form-error" style="color:red; margin-top:10px; display:none;">Please select at least one category.</div>
 </form>   
 </section>
+<p class="submittedMessage"></p>
 <section class="display-categories">
-<h2>Categories Toggled On:</h2>
+<h2></h2>
 <ul id="categories-toggled">
     Everything is currently toggled on.
 </ul>

@@ -1,9 +1,9 @@
 import {dropDown} from './dropDownMenu.js';
 
 const pref = document.querySelector('.set-pref');
-const button = document.querySelector('.pref-button');
-const arrow = document.querySelector('.arrow');
+
 const form = document.querySelector('.form');
+const submitMessage = document.querySelector('.pref-submit')
 const categoryContainer = document.querySelector('#categories-toggled');
 const categoryLookup = {
     "9": "General Knowledge",
@@ -33,15 +33,9 @@ const categoryLookup = {
 };
 
 
-button.addEventListener('click', () => {
-  pref.classList.toggle("hidden");
-  arrow.classList.toggle('arrow-is-rotated');
-});
-
-
 
 form.addEventListener('submit', function(event) {
-  event.preventDefault();
+  
   const formData = new FormData(event.target);
   const categories = formData.getAll('category');
   const errorDiv = document.getElementById('form-error');
@@ -58,7 +52,14 @@ form.addEventListener('submit', function(event) {
       params.append(key, value);
     }
   }
-  window.location.href = 'api.html?' + params.toString();
+  const link = 'api.html?' + params.toString();
+  const playLinkAnchor = document.querySelectorAll(".playLink a");
+
+  playLinkAnchor.forEach(playLinkAnchor => {
+  if (playLinkAnchor) {
+      playLinkAnchor.href = link; 
+      playLinkAnchor.textContent = "Start Game!"; 
+}});
 });
 
 

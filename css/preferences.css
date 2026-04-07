@@ -79,6 +79,7 @@ input[name="category"] {
     background: none;
     border: none;
     border-radius: 0px;
+    padding: 10px;
 }
 .h1-pref :hover {
     background: none;
