@@ -44,7 +44,7 @@ const categoryLookup = {
 
 
 form.addEventListener('submit', function(event) {
-  
+  event.preventDefault();
   const formData = new FormData(event.target);
   const categories = formData.getAll('category');
   const errorDiv = document.getElementById('form-error');
@@ -61,14 +61,7 @@ form.addEventListener('submit', function(event) {
       params.append(key, value);
     }
   }
-  const link = 'api.html?' + params.toString();
-  const playLinkAnchor = document.querySelectorAll(".playLink a");
-
-  playLinkAnchor.forEach(playLinkAnchor => {
-  if (playLinkAnchor) {
-      playLinkAnchor.href = link; 
-      playLinkAnchor.textContent = "Start Game!"; 
-}});
+  window.location.href = 'api.html?' + params.toString();
 });
 
 
