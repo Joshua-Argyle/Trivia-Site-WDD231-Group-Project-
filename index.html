@@ -21,7 +21,7 @@
             <li><a class="close" href="javascript:void(0)" class="closebtn" id="close-menu">&times;</a></li>
             <li><a href="api.html">Play</a></li>
             <li><a href="vault.html">Vault</a></li>
-            <li><a href="preferences.html">Preferences</a></li>
+            <li><a href="preferences.html" class="pref-link">Preferences</a></li>
             <li><a href="index.html">Home</a></li>
             </div>
         </div>
@@ -29,7 +29,7 @@
         <ul class="regular-nav">
             <li><a href="api.html">Play</a></li>
             <li><a href="vault.html">Vault</a></li>
-            <li><a href="preferences.html">Preferences</a></li>
+            <li><a href="preferences.html" class="pref-link">Preferences</a></li>
             <li><a href="index.html">Home</a></li>
         </ul>
         </nav>
@@ -51,7 +51,22 @@
         <ul class="footerNav">
             <li><a class="footerA" href="api.html">Play</a></li>
             <li><a class="footerA" href="vault.html">Vault</a></li>
-            <li><a class="footerA" href="preferences.html">Preferences</a></li>
+            <li><a class="footerA pref-link" href="preferences.html">Preferences</a></li>
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const params = window.location.search;
+                document.querySelectorAll('a.pref-link').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        if (params && params.length > 1) {
+                            e.preventDefault();
+                            const url = new URL(link.href, window.location.origin);
+                            url.search = params;
+                            window.location.href = url.toString();
+                        }
+                    });
+                });
+            });
+            </script>
             <li><a class="footerA" href="index.html">Home</a></li>
         </ul>
         <p class="footerP">© 2026 Brain Gain Trivia. All rights reserved.</p>

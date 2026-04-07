@@ -1,7 +1,13 @@
-import {dropDown} from './dropDownMenu.js';
-
-const pref = document.querySelector('.set-pref');
-
+document.addEventListener('DOMContentLoaded', function() {
+  const clearBtn = document.getElementById('clear-preferences');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function() {
+      document.querySelectorAll('input[type="checkbox"][name="category"]').forEach(cb => {
+        cb.checked = false;
+      });
+    });
+  }
+});
 const form = document.querySelector('.form');
 const submitMessage = document.querySelector('.pref-submit')
 const categoryContainer = document.querySelector('#categories-toggled');
@@ -31,6 +37,9 @@ const categoryLookup = {
     "31": "Japanese Anime & Manga",
     "32": "Cartoon & Animations"
 };
+
+
+
 
 
 
@@ -97,5 +106,19 @@ function updateUI() {
       categoryContainer.appendChild(li);
   }
 };
-dropDown();
+function checkCategoriesFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const urlCategories = params.getAll('category');
+  if (urlCategories.length > 0) {
+    urlCategories.forEach(cat => {
+      const checkbox = document.querySelector('input[type="checkbox"][name="category"][value="' + cat + '"]');
+      if (checkbox) {
+        checkbox.checked = true;
+      }
+    });
+  }
+}
+
+checkCategoriesFromURL();
+updateUI();
 updateUI();

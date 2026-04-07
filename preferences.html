@@ -13,20 +13,6 @@
         <h1>Brain Gains</h1>
         <img class="logo" src="imgs/d86d2802-9b8b-4772-9ab8-85437eb2c0a5.png" alt="Brain Gain Logo">
         <nav>
-
-        <div class="dropdown">
-            
-            <button id="dropbtn" class="dropbtn">&#9776;</button>
-            
-            <div id="myDropdown" class="dropdown">
-            <li><a class="close" href="javascript:void(0)" class="closebtn" id="close-menu">&times;</a></li>
-            <li class="playLink"><a href="api.html">Play</a></li>
-            <li><a href="vault.html">Vault</a></li>
-            <li><a href="preferences.html">Preferences</a></li>
-            <li><a href="index.html">Home</a></li>
-            </div>
-        </div>
-
         <ul class="regular-nav">
             <li class="playLink"><a href="api.html">Play</a></li>
             <li><a href="vault.html">Vault</a></li>
@@ -37,9 +23,11 @@
     </header>
 
     <main class="pref-main">
-        <h1 class="h1-pref">Preference Settings</h1>
+        <Button class="pref-button">
+            <h1 class="h1-pref">Preference Settings</h1>
+        <img class="arrow" src="imgs/Arrow.png" alt="Dropdown Arrow"></Button>
         <p class="pref-description" >Customize your game experience below to be tested exactly on what categories you want to become more knowledgeable at!</p>
-        <section class="set-pref">
+        <section class="set-pref hidden">
          <form class="form" action="/submit-form" method="POST">
             <h2 id="cat">Categories:</h2>
             
@@ -171,14 +159,15 @@
             </section>
             </div>
             
-  <input id="pref-submit" type="submit" value="Submit">
+    <input id="pref-submit" type="submit" value="Play With Preferences">
+    <button type="button" id="clear-preferences" style="margin-left: 10px;">Remove All Preferences</button>
 </form>   
 <div id="form-error" style="color:red; margin-top:10px; display:none;">Please select at least one category.</div>
 </form>   
 </section>
 <p class="submittedMessage"></p>
 <section class="display-categories">
-<h2></h2>
+<h2>Categories Toggled On:</h2>
 <ul id="categories-toggled">
     Everything is currently toggled on.
 </ul>
