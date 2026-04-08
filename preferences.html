@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brain Gain Trivia</title>
     <link rel="stylesheet" href="css/style.css">
-    <script type="module" src="preferences.js" defer></script>
+    <script type="module" src="js/preferences.js" defer></script>
 
 </head>
 <body class="pref-body">
@@ -13,10 +13,24 @@
         <h1>Brain Gains</h1>
         <img class="logo" src="imgs/d86d2802-9b8b-4772-9ab8-85437eb2c0a5.png" alt="Brain Gain Logo">
         <nav>
-        <ul class="regular-nav">
-            <li class="playLink"><a href="api.html">Play</a></li>
+
+        <div class="dropdown">
+            
+            <button id="dropbtn" class="dropbtn">&#9776;</button>
+            
+            <div id="myDropdown" class="dropdown">
+            <li><a class="close" href="javascript:void(0)" class="closebtn" id="close-menu">&times;</a></li>
+            <li><a href="api.html">Play</a></li>
             <li><a href="vault.html">Vault</a></li>
-            <li><a href="preferences.html">Preferences</a></li>
+            <li><a href="preferences.html" class="pref-link">Preferences</a></li>
+            <li><a href="index.html">Home</a></li>
+            </div>
+        </div>
+
+        <ul class="regular-nav">
+            <li><a href="api.html">Play</a></li>
+            <li><a href="vault.html">Vault</a></li>
+            <li><a href="preferences.html" class="pref-link">Preferences</a></li>
             <li><a href="index.html">Home</a></li>
         </ul>
         </nav>
@@ -29,7 +43,6 @@
          <form class="form" action="/submit-form" method="POST">
             <h2 id="cat">Categories:</h2>
             
-
         <div class="checkboxes">
             <section id="part1">
             <div class="pref-cat">

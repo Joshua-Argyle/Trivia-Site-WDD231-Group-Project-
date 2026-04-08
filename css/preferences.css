@@ -131,3 +131,9 @@ input[name="category"] {
     transform: translateX(10px);
 }   
 
+ @media (max-width: 657px) {
+    main {
+        padding: 10px;
+    }
+
+ }

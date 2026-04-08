@@ -1,3 +1,5 @@
+import {dropDown} from './dropDownMenu.js';
+
 document.addEventListener('DOMContentLoaded', function() {
   const clearBtn = document.getElementById('clear-preferences');
   if (clearBtn) {
@@ -113,5 +115,6 @@ function checkCategoriesFromURL() {
 }
 
 checkCategoriesFromURL();
+dropDown();
 updateUI();
 updateUI();
